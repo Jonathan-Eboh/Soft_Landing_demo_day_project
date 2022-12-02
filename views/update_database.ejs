@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Create Database Form</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="createDbStyle.css">
+</head>
+
+<body>
+    <div class="testbox">
+        <form action="/create_database" method="POST">
+            <div class="banner">
+                <h1>Update Database Form</h1>
+            </div>
+            <p class="top-info">Thank you for your interest in this project. Please fill out this form to generate the basic structure of the
+                database that will hold your apis data!</p>
+            <div class="item">
+                <p>User Name and User key
+                    <span class="required">*</span>
+                </p>
+                <div class="name-item">
+                    <input type="text" name="name" placeholder="User Name" required/>
+                    <input type="text" name="name" placeholder="User Key" required/>
+
+                </div>
+            </div>
+            <div class="contact-item">
+                <div class="item">
+                    <p>Email
+                        <span class="required">*</span>
+                    </p>
+                    <input type="text" name="name" required/>
+                </div>
+                <div class="item">
+                    <p>Tags
+                        <span class="required">*</span>
+                    </p>
+                    <input type="text" name="name" placeholder="Food, Art , Sports ect..." required/>
+                </div>
+            </div>
+            <div class="position-item">
+                <div class="item">
+                    <p>What is this database going to be used for?
+                        <span class="required">*</span>
+                    </p>
+                    <select required>
+                        <option value="1">theme/type 1</option>
+                        <option value="2">theme/type 2</option>
+                        <option value="3">theme/type 3</option>
+                        <option value="4">theme/type 4</option>
+                        <option value="5">theme/type 5</option>
+                    </select>
+                </div>
+                <div class="item">
+                    <p>Db access
+                        <select required>
+                            <option value="1">Public</option>
+                            <option value="2">Private</option>
+                        </select>
+                </div>
+
+            </div>
+            <h3>Type of data</h3>
+            <div class="item">
+                <p>Date types
+                    <span class="required">*</span>
+                </p>
+                <div class="name-item">
+                    <input type="text" name="name" placeholder="numbers, strings ect..." required/>
+                    <input type="text" name="name" placeholder="numbers, strings ect..." required/>
+                    <input type="text" name="name" placeholder="numbers, strings ect..." required/>
+                    <input type="text" name="name" placeholder="numbers, strings ect..." required/>
+                </div>
+            </div>
+
+            <div class="item">
+                <p>DB schema image (will be visible to all for databases set to public):</p>
+                <input type="text" name="providing" />
+                <input type="file" name="file" accept="file/*">
+            </div>
+            <div class="btn-block">
+                <button type="submit" href="/">Update Your data Base!</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

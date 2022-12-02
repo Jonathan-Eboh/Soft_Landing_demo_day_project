@@ -1,0 +1,296 @@
+<%- include('partials/header') -%>
+
+    <body>
+        <!--Navbar-->
+        <nav class="relative container mx-auto p-6">
+            <!-- Flex container -->
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex flex-row pt-2">
+                    <img src="imgs/Soft_landing_pillows_logo.png" id="pillowLogoImg" alt="">
+                    <img src="imgs/Soft_landing.png" id="wordLogoImg" alt="">
+                </div>
+                <!-- Menu Items -->
+                <div class="hidden space-x-6 md:flex">
+
+                    <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+                    <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+                </div>
+                <!-- Buttons -->
+                <div class="flex flex-row">
+                    <a href="/login" class="hidden p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Get Started</a>
+                    <a href="/signup" class="hidden p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Sign Up</a>
+                </div>
+                <!-- Hamburger Icon -->
+                <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+
+                    <span class="hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-bottom"></span>
+
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden">
+                <div id="menu" class="absolute flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+
+
+                    <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+
+                    <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+                </div>
+            </div>
+        </nav>
+        <!-- Hero Section -->
+        <section id="hero">
+            <!-- Flex Container -->
+            <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
+                <!-- Left item -->
+                <div class="flex flex-col mb-32 space-y-12 md:w-1/2">
+                    <h1 class="max-w-md text-4xl font-bold text-center md:text-5xl md:text-left">
+                        Bring everyone together to build better APIs
+                    </h1>
+                    <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
+                        Soft landing aims to address many of the current issues around the quality and reliability of APIs within the current tech
+                        space. By leveraging the power of community.
+                    </p>
+                    <div class="flex justify-center md:justify-start">
+                        <a href="/login" class="p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight">Get Started</a>
+
+                    </div>
+                </div>
+                <!-- Image -->
+                <div>
+                    <img src="imgs/ppl_on_phones.png" class="rounded-lg" alt="">
+                </div>
+            </div>
+        </section>
+        <!-- Features Section -->
+        <section id="features">
+            <div class="container flex flex-col px-4 mx-auto mt-10 space-y12 md:space-y-0 md:flex-row">
+                <!-- What's Differnt -->
+                <div class="flex flex-col space-y-12 md:w-1/2">
+                    <h2 class="max-w-md text-4xl font-bold text-center md:text-left">
+                        What's different about Soft Landing?
+                    </h2>
+                    <p class="max-w-sm text-center text-darkGrayishBlue md:text-left">
+                        Many developers spend hours looking through mostly unreliable APIs. Many of which require anywhere from a moderate to extensive
+                        list of forms to be filled out before allowing access. Even worse its often difficult to tell if
+                        an API is useful until after this time consuming process.
+                    </p>
+                    <img src="imgs/capybara_head.jpg" alt="" id="capyHeadImg" class="self-center mr-10">
+                </div>
+
+                <!-- Numbered List -->
+                <div class="flex flex-col space-y-8 md:w-1/2">
+                    <!-- List Item 1-->
+                    <div class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
+                        <!-- Heading -->
+                        <div class="rounded-l-lg bg-brightRedSupLight md:bg-transparent">
+                            <div class="flex items-center space-x-2">
+                                <div class="px-4 py-2 text-white rounded-lg md:py-1 bg-brightRed">
+                                    01
+                                </div>
+                                <h3 class="text-base font-bold md:mb-4 md:hidden">
+                                    Find what you need fast
+                                </h3>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="hidden mb-4 text-lg font-bold md:block">
+                                Find what you need fast
+                            </h3>
+                            <p class="text-darkGrayishBlue">
+                                Soft Landing is designed to expidite the search process by offering a central, easy to use, hub for API creation.
+                            </p>
+                        </div>
+                    </div>
+                    <!-- List Item 2 -->
+                    <div class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
+                        <!-- Heading -->
+                        <div class="rounded-l-lg bg-brightRedSupLight md:bg-transparent">
+                            <div class="flex items-center space-x-2">
+                                <div class="px-4 py-2 text-white rounded-lg md:py-1 bg-brightRed">
+                                    02
+                                </div>
+                                <h3 class="text-base font-bold md:mb-4 md:hidden">
+                                    Trust what you find more
+                                </h3>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="hidden mb-4 text-lg font-bold md:block">
+                                Trust what you find more
+                            </h3>
+                            <p class="text-darkGrayishBlue">
+                                We're Raising the bar of reliability for APIs. APIs will regularly be screened for being online and accessible to the user
+                                base. This will set a ubiquitous and adaptable standard for the structure of returned data
+                            </p>
+                        </div>
+                    </div>
+                    <!-- List Item 3 -->
+                    <div class="flex flex-col space-y-3 md:space-y-0 md:space-x-6 md:flex-row">
+                        <!-- Heading -->
+                        <div class="rounded-l-lg bg-brightRedSupLight md:bg-transparent">
+                            <div class="flex items-center space-x-2">
+                                <div class="px-4 py-2 text-white rounded-lg md:py-1 bg-brightRed">
+                                    03
+                                </div>
+                                <h3 class="text-base font-bold md:mb-4 md:hidden">
+                                    Earn cash while you change the world
+                                </h3>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="hidden mb-4 text-lg font-bold md:block">
+                                Earn cash while you change the world
+                            </h3>
+                            <p class="text-darkGrayishBlue">
+                                By giving users an intuitive tool as well as guides and templates for robust schema construction. Soft Landing gives everyday
+                                people an avenue to make money from their data via the bounty system. In turn, creating a
+                                community of data enthusiast and raising data literacy
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials">
+            <!-- Container to heading and testm blocks -->
+            <div class="max-w-6xl px-5 mx-auto mt-32 text-center">
+                <h2 class="text-4xl font-bold text-center">
+                    What are people saying about Soft Landing?
+                </h2>
+                <!-- Testimonials Container -->
+                <div class="flex flex-col mt-24 md:flex-row md:space-x-6">
+                    <!-- Testimonial 1 -->
+                    <div class="flex flex-col items-center p-6 space-y-6 rounded-lg bg-veryLightGray md:w-1/3">
+                        <img src="imgs/avatar-anisha.png" class="w-16 -mt-14" alt="">
+                        <h5 class="text-lg font-bold">Anisha Li</h5>
+                        <p class="text-sm text-darkGrayishBlue">
+                            “Soft Landing has supercharged our team’s workflow. The ability to maintain visibility on larger milestones at all times
+                            keeps everyone motivated.”
+                        </p>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="hidden flex-col items-center p-6 space-y-6 rounded-lg bg-veryLightGray md:flex md:w-1/3">
+                        <img src="imgs/avatar-ali.png" class="w-16 -mt-14" alt="">
+                        <h5 class="text-lg font-bold">Ali Bravo</h5>
+                        <p class="text-sm text-darkGrayishBlue">
+                            “We have been able to cancel so many other subscriptions since using Soft Landing. There is no more cross-channel confusion
+                            and everyone is much more focused.”
+                        </p>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="hidden flex-col items-center p-6 space-y-6 rounded-lg bg-veryLightGray md:flex md:w-1/3">
+                        <img src="imgs/avatar-richard.png" class="w-16 -mt-14" alt="">
+                        <h5 class="text-lg font-bold">Richard Watts</h5>
+                        <p class="text-sm text-darkGrayishBlue">
+                            “Soft Landing has supercharged our team’s workflow. The ability to maintain visibility on larger milestones at all times
+                            keeps everyone motivated.”
+                        </p>
+                    </div>
+                </div>
+                <!-- Button -->
+                <div class="my-16">
+                    <a href="/login" class="p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight">Get Started</a>
+
+                </div>
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section id="cta" class="bg-brightRed">
+            <!-- Flex Container -->
+            <div class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:speace-y-0">
+                <!-- Heading -->
+                <h2 class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+                    Earn cash and join the data revolution today
+                </h2>
+                <!-- Button -->
+                <div>
+                    <a href="/login" class="p-3 px-6 pt-2 text-brightRed font-bold bg-white rounded-lg shadow-2xl baseline hover:bg-gray-900">Get Started</a>
+
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-veryDarkBlue">
+            <!-- Flex Container -->
+            <div class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+                <!-- Logo and social links container -->
+                <div class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+                    <div class="mx-auto my-6 text-center text-white md:hidden">
+                        Copyright &copy; 2022, All Rights Reserved
+                    </div>
+                    <!-- Logo -->
+                    <div>
+                        <img src="imgs/Soft_landing_dark.png" class="h-8" alt="" id="darkLogo">
+                    </div>
+                    <!-- Social Links Container -->
+                    <div class="flex justify-center space-x-4">
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-facebook.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-youtube.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-twitter.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-pinterest.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-instagram.svg" alt="" class="h-8">
+                        </a>
+                    </div>
+                </div>
+                <!-- List Container -->
+                <div class="flex justify-around space-x-32">
+                    <div class="flex flex-col space-y-3 text-white">
+                        <a href="#" class="hover:text-brightRed">Home</a>
+                        <a href="#" class="hover:text-brightRed">Pricing</a>
+                        <a href="#" class="hover:text-brightRed">Products</a>
+                        <a href="#" class="hover:text-brightRed">About</a>
+                    </div>
+
+                </div>
+                <div class="flex justify-around space-x-32">
+                    <div class="flex flex-col space-y-3 text-white">
+                        <a href="#" class="hover:text-brightRed">Careers</a>
+                        <a href="#" class="hover:text-brightRed">Community</a>
+                        <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+
+                    </div>
+
+                </div>
+                <!-- Input Container -->
+                <div class="flex flex-col justify-btween">
+                    <form action="#">
+                        <div class="flex space-x-3">
+                            <input type="text" class="flex-1 px4 rounded-lg focus:outline-none" placeholder="Updated in your inbox">
+                            <button class="px-6 py-2 text-white rounded-lg bg-brightRed hover:bg-brightRedLight focus:outline-none">
+                                Go
+                            </button>
+                        </div>
+                    </form>
+                    <div class="hidden text-white md:block">
+                        Copyright &copy; 2022, All Rights Reserved
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+        <%- include('partials/footer') -%>
+
+    </body>
+
+    </html>

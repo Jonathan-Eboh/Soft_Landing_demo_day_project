@@ -1,0 +1,228 @@
+<%- include('partials/header') -%>
+  <link rel="stylesheet" href="/css/backgrounds.css">
+
+
+
+
+
+
+
+  <body class="profileBody pt-8">
+
+    <!--Navbar-->
+    <nav class="relative container mx-auto p-6 white rounded-lg">
+      <!-- Flex container -->
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="pt-2 flex flex-row">
+          <img src="imgs/Soft_landing_pillows_logo.png" id="pillowLogoImg" alt="">
+          <img src="imgs/Soft_landing.png" alt="">
+        </div>
+        <!-- Menu Items -->
+        <div class="hidden space-x-6 md:flex">
+          <a href="/create_infocluster" class="hover:text-darkGrayishBlue">Create Info Cluster</a>
+
+          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+
+          <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+        </div>
+        <!-- Buttons -->
+        <div class="flex flex-row">
+          <a href="/logout" class="hidden p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Log Out</a>
+        </div>
+        <!-- Hamburger Icon -->
+        <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+
+          <span class="hamburger-top"></span>
+          <span class="hamburger-middle"></span>
+          <span class="hamburger-bottom"></span>
+
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="md:hidden">
+        <div id="menu" class="absolute flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+          <a href="/create_infocluster" class="hover:text-darkGrayishBlue">Create Info Cluster</a>
+
+          <a href="#" class="hover:text-darkGrayishBlue">Pricing</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Product</a>
+          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Careers</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="profile-page">
+
+
+
+      <div class="container mx-auto px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+          <div class="px-6">
+            <div class="flex flex-wrap justify-center">
+
+
+              <div class="w-full lg:w-4/12 px-4 lg:order-1">
+                <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                  <div class="relative">
+
+                    <div class="w-full">Test
+
+                    </div>
+                  </div>
+                </div>
+                <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                  <div class="mr-4 p-3 text-center">
+                    <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">22</span>
+                    <span class="text-sm text-blueGray-400">Friends</span>
+                  </div>
+                  <div class="mr-4 p-3 text-center">
+                    <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">10</span>
+                    <span class="text-sm text-blueGray-400">Photos</span>
+                  </div>
+                  <div class="lg:mr-4 p-3 text-center">
+                    <span class="text-xl font-bold block uppercase tracking-wide text-blueGray-600">89</span>
+                    <span class="text-sm text-blueGray-400">Comments</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-col text-center mt-12">
+              <img alt="..." src="imgs/avatar-anisha.png" class="shadow-xl rounded-full h-auto align-middle border-none absolute lg: max-w-150-px">
+
+              <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                Jenna Stones
+              </h3>
+              <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+                <i class="fas fa-map-marker-alt mr-2 text-lg text-blueGray-400"></i>
+                Los Angeles, California
+              </div>
+              <div class="mb-2 text-blueGray-600 mt-10">
+                <i class="fas fa-briefcase mr-2 text-lg text-blueGray-400"></i>Solution Manager - Creative Tim Officer
+              </div>
+              <div class="mb-2 text-blueGray-600">
+                <i class="fas fa-university mr-2 text-lg text-blueGray-400"></i>University of Computer Science
+              </div>
+            </div>
+            <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+              <div class="flex flex-wrap justify-center">
+                <div class="w-full lg:w-9/12 px-4">
+                  <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+                    An artist of considerable range, Jenna the name taken by Melbourne-raised, Brooklyn-based Nick Murphy writes, performs and
+                    records all of his own music, giving it a warm, intimate feel with a solid groove structure. An artist
+                    of considerable range.
+                  </p>
+                  <a href="#pablo" class="font-normal text-pink-500">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </main>
+
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <!-- Flex Container -->
+      <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
+
+
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section id="cta" class="bg-brightRed">
+      <!-- Flex Container -->
+      <div class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:speace-y-0">
+        <!-- Heading -->
+        <h2 class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+
+        </h2>
+        <!-- Button -->
+        <div>
+          <a href="/logout" class="p-3 px-6 pt-2 text-brightRed font-bold bg-white rounded-lg shadow-2xl baseline hover:bg-gray-900">Log Out</a>
+
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-veryDarkBlue">
+      <!-- Flex Container -->
+      <div class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+        <!-- Logo and social links container -->
+        <div class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+          <div class="mx-auto my-6 text-center text-white md:hidden">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+          <!-- Logo -->
+          <div>
+            <img src="imgs/Soft_landing_dark.png" class="h-8" alt="">
+          </div>
+          <!-- Social Links Container -->
+          <div class="flex justify-center space-x-4">
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-facebook.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-youtube.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-twitter.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-pinterest.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-instagram.svg" alt="" class="h-8">
+            </a>
+          </div>
+        </div>
+        <!-- List Container -->
+        <div class="flex justify-around space-x-32">
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Home</a>
+            <a href="#" class="hover:text-brightRed">Pricing</a>
+            <a href="#" class="hover:text-brightRed">Products</a>
+            <a href="#" class="hover:text-brightRed">About</a>
+          </div>
+
+        </div>
+        <div class="flex justify-around space-x-32">
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Careers</a>
+            <a href="#" class="hover:text-brightRed">Community</a>
+            <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+
+          </div>
+
+        </div>
+        <!-- Input Container -->
+        <div class="flex flex-col justify-btween">
+          <form action="#">
+            <div class="flex space-x-3">
+              <input type="text" class="flex-1 px4 rounded-lg focus:outline-none" placeholder="Updated in your inbox">
+              <button class="px-6 py-2 text-white rounded-lg bg-brightRed hover:bg-brightRedLight focus:outline-none">
+                Go
+              </button>
+            </div>
+          </form>
+          <div class="hidden text-white md:block">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+
+        </div>
+      </div>
+    </footer>
+    <%- include('partials/footer') -%>
+
+  </body>
+
+  <%- include('partials/footer') -%>

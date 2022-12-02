@@ -1,0 +1,101 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+  /* background-image: url('../../imgs/bg-tablet-pattern.svg'); */
+  background-repeat: no-repeat;
+  background-size: 800px;
+  background-position: 90% -25%
+}
+
+#cta{
+  /* background-image: url('../../imgs/bg-simplify-section-desktop.svg');
+  background-repeat: no-repeat; */
+  background-color: #ee5522;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='100' y1='33' x2='100' y2='-3'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='100' y1='135' x2='100' y2='97'%3E%3Cstop offset='0' stop-color='%23000' stop-opacity='0'/%3E%3Cstop offset='1' stop-color='%23000' stop-opacity='1'/%3E%3C/linearGradient%3E%3C/defs%3E%3Cg fill='%23d23d09' fill-opacity='0.6'%3E%3Crect x='100' width='100' height='100'/%3E%3Crect y='100' width='100' height='100'/%3E%3C/g%3E%3Cg fill-opacity='0.5'%3E%3Cpolygon fill='url(%23a)' points='100 30 0 0 200 0'/%3E%3Cpolygon fill='url(%23b)' points='100 100 0 130 0 100 200 100 200 130'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+
+#capyHeadImg{
+    max-width: 50%;  
+}
+
+#pillowLogoImg{
+    max-width: 15%;
+    height: auto;
+}
+
+#wordLogoImg{
+    max-width: 40%;
+    height: auto;
+}
+
+.profile-page{
+    margin-top: 400px;
+}
+
+/* hamburger menu stuff */
+.hamburger{
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    transition: all 0.25s;
+    position: relative;
+}
+
+.white{
+    background: white;
+}
+
+.hamburger-top,
+.hamburger-middle,
+.hamburger-bottom {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: black;
+    transform: rotate(0);
+    transition: all 0.5s;
+}
+
+.hamburger-middle{
+    transform: translateY(7px);
+}
+
+.hamburger-bottom{
+    transform: translateY(14px);
+}
+
+.open{
+    transform:rotate(90deg);
+    transform: translateY(0px);
+}
+
+
+.open .hamburger-top {
+    transform:rotate(45deg) translateY(6px) translate(6px);
+}
+
+.open .hamburger-middle {
+    display: none;
+}
+
+.open .hamburger-bottom {
+    transform:rotate(-45deg) translateY(6px) translate(-6px);
+}
+
+@media(max-width: 576px){
+    body{
+        background-position: 50px -50px;
+        background-size: 500px;
+    }
+
+    #cta{
+        background-image: url('../../imgs/bg-simplify-section-mobile.svg');
+    }
+}
+

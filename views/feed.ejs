@@ -1,0 +1,77 @@
+<%- include('partials/header') -%>
+
+  <div class="container">
+    <h2>Pending Orders</h2>
+    <div class="row justify-content-center mt-5">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <% if(posts[i].completed === false) {%>
+            <li class="col-6 justify-content-between mt-5">
+              <a href="/post/<%= posts[i]._id%>">
+                Go to this order
+              </a>
+              <%= posts[i].Name%>
+                :::The id for this order is :::
+                <%= posts[i]._id%>"
+                  <span>
+                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </span>
+
+
+                  <form action="/post/likePost/<%= posts[i]._id%>?_method=PUT" method="POST" class="col-1">
+
+                    <button class="btn btn-primary fa fa-check-square" type="submit"></button>
+                  </form>
+                  <form action="/post/deletePost/<%= posts[i]._id%>?_method=DELETE" method="POST" class="col-1">
+
+                    <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                  </form>
+
+            </li>
+            <% } %>
+              <% } %>
+      </ul>
+    </div>
+    <h2>Completed Orders</h2>
+    <div class="row justify-content-center mt-5">
+      <ul class="row list-unstyled">
+        <% for(var i=0; i<posts.length; i++) {%>
+          <% if(posts[i].completed === true) {%>
+            <li class="col-6 justify-content-between mt-5">
+              <a href="/post/<%= posts[i]._id%>">
+                Go to this order
+              </a>
+              <%= posts[i].Name%>
+                :::The id for this order is :::
+                <%= posts[i]._id%>"
+                  <span>
+                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                  </span>
+                  <span>
+                    <i class="fa fa-trash" aria-hidden="true"></i>
+                  </span>
+
+
+                  <form action="/post/likePost/<%= posts[i]._id%>?_method=PUT" method="POST" class="col-1">
+
+                    <button class="btn btn-primary fa fa-check-square" type="submit"></button>
+                  </form>
+                  <form action="/post/deletePost/<%= posts[i]._id%>?_method=DELETE" method="POST" class="col-1">
+
+                    <button class="btn btn-primary fa fa-trash" type="submit"></button>
+                  </form>
+
+            </li>
+            <% } %>
+              <% } %>
+      </ul>
+    </div>
+
+  </div>
+
+
+
+  <%- include('partials/footer') -%>
