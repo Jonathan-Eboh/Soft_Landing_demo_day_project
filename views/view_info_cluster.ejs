@@ -2,76 +2,84 @@
 
   <h1>Hello</h1>
 
-  over list
-  <div class="userContain">
-    <ul>
-      top of ul
-      <%for (let i=0; i<infoClusterObjectReturn.length; i++){%>
-        <li>
-          <%= infoClusterObjectReturn[i].Title%>
 
-            ---------------------------
-            <%= infoClusterObjectReturn[i].Schema%>__________________
-              <%= infoClusterObjectReturn[i].Schema[i]["Field_Name"]%>:::::
-                <%= infoClusterObjectReturn[i].Schema[i].Field_Type%>
-                  this is the user name(
-                  <%= user.userName %>::::
-                    <%= user._id %>) testing
-                      <%=user.email%>
-        </li>
-        <%}%>
-    </ul>
-    <h1>user loop</h1>
-    <ul>
-      <%for (let i=0; i<user.length; i++){%>
-        <li>
+  <!-- <option value="">--Data Type--</option>
+  <option value="number">Number</option>
+  <option value="string">Single line of text</option>
+  <option value="textArea">Multiple lines of text</option>
+  <option value="file">File</option>
+  <option value="location">Location</option> -->
 
-          <%= user[i]._id%>
-
-            testing for user
-            <%=user[i].email%>
-        </li>
-        <%}%>
-    </ul>
-    under list
-    <form action="/comment/createComment/" method="POST">
-      <input class="" type="text" placeholder="comment" id="comment" name="text">
-      <button class="btn btn-primary" type="submit">Post</button>
-    </form>
-  </div>
-
-  <div class="row justify-content-center mt-5">
-    <ul class="row list-unstyled">
-      <% for(var i=0; i<infoClusterObjectReturn.length; i++) {%>
-        <% if(infoClusterObjectReturn[i].completed === false) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= infoClusterObjectReturn[i]._id%>">
-              Go to this order
-            </a>
-            <%= infoClusterObjectReturn[i].Name%>
-              :::The id for this order is :::
-              <%= infoClusterObjectReturn[i]._id%>"
-                <span>
-                  <i class="fa fa-check-square" aria-hidden="true"></i>
-                </span>
-                <span>
-                  <i class="fa fa-trash" aria-hidden="true"></i>
-                </span>
+  <form action="/info/create_infocluster_item/<%= infoClusterObjectReturn._id%>" method="POST" class="col-1" enctype="multipart/form-data">
 
 
-                <form action="/post/likePost/<%= infoClusterObjectReturn[i]._id%>?_method=PUT" method="POST" class="col-1">
+    <!-- Switch start tag -->
+    <% 
+              for(let i = 0;i<infoClusterObjectReturn.Schema.length;i++) {
+                 const currentField = infoClusterObjectReturn.Schema[i] 
+                   switch(currentField.Field_Type) {
+                     case "string":
+                     %>
+      <!-- first ejs end tag, under first case start -->
 
-                  <button class="btn btn-primary fa fa-check-square" type="submit"></button>
-                </form>
-                <form action="/post/deletePost/<%= infoClusterObjectReturn[i]._id%>?_method=DELETE" method="POST" class="col-1">
+      <label for="<%= currentField.Field_Name%>">
+        <%= currentField.Field_Name%>
+      </label>
+      <input type="text" name="<%= currentField.Field_Name%>" placeholder="Enter in data here">
+      <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+      <% break;%>
+        <% case "textArea":%>
+          <label for="<%= currentField.Field_Name%>">
+            <%= currentField.Field_Name%>
+          </label>
+          <textarea name="<%= currentField.Field_Name%>" rows="5" cols="33" placeholder="Add a discription of your data here!"></textarea>
+          <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+          <% break;%>
+            <% case "number":%>
+              <label for="<%= currentField.Field_Name%>">
+                <%= currentField.Field_Name%>
+              </label>
+              <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+              <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+              <% break;%>
 
-                  <button class="btn btn-primary fa fa-trash" type="submit"></button>
-                </form>
+                <% case "location":%>
+                  <label for="<%= currentField.Field_Name%>">
+                    <%= currentField.Field_Name%>
+                  </label>
+                  <label for="lat">
+                    Latitude:
+                  </label>
+                  <div name="lat">
+                    <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                  </div>
+                  <label for="lon">
+                    Longitude:
+                  </label>
+                  <div>
+                    <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                  </div name="lon">
+                  <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                  <% break;%>
 
-          </li>
-          <% } %>
-            <% } %>
-    </ul>
-  </div>
+                    <% case "file":%>
+                      <label for="<%= currentField.Field_Name%>">
+                        <%= currentField.Field_Name%>
+                      </label>
+
+                      <input type="file" name="<%= currentField.Field_Name%>" accept="file/*">
+                      <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                      <% break;%>
+                        <!-- Tags that hold the ending brackets for the for loop and the switch statement -->
+                        <%
+                  } 
+                } 
+                %>
+                          <!-- Switch end tag -->
+                          %>
+
+
+                          <button class="btn btn-primary fa fa-check-square" type="submit">Add Data!</button>
+  </form>
 
   <%- include('partials/footer') -%>

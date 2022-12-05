@@ -3,6 +3,9 @@ const cloudinary = require("../middleware/cloudinary");
 const Info_cluster = require("../models/Info_cluster");
 const User = require("../models/User");
 
+
+
+
 //Test entry
 // Info_cluster.create({
 //     Title: "Cats of New York",
@@ -19,12 +22,49 @@ const User = require("../models/User");
 // });
 
 
+//TODO: the form to add the data will do a POST , the controller that recives the post will do db.colletion("info_cluster_item").insertOne(req.body)
+//TODO:
 
 module.exports = {
 
-    getInfoClusterView: async (req, res) => {
+    createInfoClusterItem: async (req, res) => {
+        //TODO: This is where we will send the new addtions to the info cluster to the database  in the "info_cluster_item" collection
+        console.log("THIS IS REQ.BODY AND REQ.PARAMS IN THE CREATE INFO CLUSTER ITEM ROUTE", req.body, req.params);
+        console.log("This is global.db in info cluster controller", global.db);
 
-        const infoClusterDBObject = await Info_cluster.find({ _id: req.params.id })
+        //put the addtions to the target API in the "info_cluster_items" collection here
+        global.db.collection("info_cluster_items").insertOne({ ...req.body, cluster_id: req.params.info_cluster_id }) //req.params.info_cluster_id is how we isolate the 
+        // res.send("TODO"); was just used for testing, we actually want to send them to the view_info_cluster page via the below redirect
+
+
+
+        //res.redirect to view info cluster
+        res.redirect(`/info/view_info_cluster/${req.params.info_cluster_id}`) //send them back to the view info cluster page to see the changes they made, 
+    },
+
+    getInfoClusterView: async (req, res) => {
+        //*This is where we render the view of the single info cluster that was just created
+        //*This form is the one that dynamically generates the ejs form based on the user entered Schema
+
+        //can use findOne instead of find here bc find returns an array of objects, (in this case the arr of objects just had one thing anyways)
+        const infoClusterDBObject = await Info_cluster.findOne({ _id: req.params.id })
+
+        //*Here we are 
+        //TODO:
+        //get info cluster model, that gives id
+        //? using this? const Info_cluster = require("../models/Info_cluster"); Info_cluster.findOne(infoClusterDBObject._id)
+        //db.collection("info_cluster_items").find( filter for info cluster id).toArray()
+        //? here the filter will be for info_cluster_items that have  a cluster id of infoClusterDBObject._id
+        //loop through the items, then loop through the keys in each item
+        //from each item you take the array which will be the value of that key,
+        //take last element in each array this will tell us how to display the data
+
+        //* then send them back to the view info cluster page were we will then render the previous form along with
+        //* all the info_cluster_items that have the targeted cluster id.
+        //TODO: do the ejs for that extra rendering.
+
+
+
         //const userReturn = await User.find({ _id: req.params.id }) //TODO: need to make sure im finding the user password correctly
         console.log("This is req.user in getInfoClusterView", req.user);
 
