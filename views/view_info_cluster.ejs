@@ -14,6 +14,7 @@
 
 
     <!-- Switch start tag -->
+    <!-- might need to change the const of currentField later -->
     <% 
               for(let i = 0;i<infoClusterObjectReturn.Schema.length;i++) {
                  const currentField = infoClusterObjectReturn.Schema[i] 
@@ -62,7 +63,11 @@
                   <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
                   <% break;%>
 
-                    <% case "file":%>
+                    <% case "file":
+                      case "img":
+                      case "audio":
+                      case "video":
+                    %>
                       <label for="<%= currentField.Field_Name%>">
                         <%= currentField.Field_Name%>
                       </label>
@@ -81,5 +86,81 @@
 
                           <button class="btn btn-primary fa fa-check-square" type="submit">Add Data!</button>
   </form>
+
+
+  <section class="clusterItemContainer">
+
+    <%
+
+      for( let i = 0; i<clusterArr.length; i++){ %>
+      <form action="#">
+        <%  
+         const currentItem = clusterArr[i]
+        // const currentField = infoClusterObjectReturn.Schema[i].Field_Name
+          const currentItemKeys = Object.keys(currentItem)
+         for( let j = 0; j<currentItemKeys.length; j++){
+        const key = currentItemKeys[j] //field name
+        const valueArr = currentItem[key] //field value
+        if(!Array.isArray(valueArr)) continue
+         const type = valueArr[valueArr.length - 1] //data type
+         console.log("This is the currentField:", key, valueArr)
+          switch(type){
+            case "string":
+         %>
+          <span>
+            <b>
+              <%= key %>
+            </b>
+          </span> ::
+          <span>
+            <%= valueArr[0] %>
+          </span>
+          <br>
+          <%  
+            break;
+            
+          case "textArea":
+          %>
+
+            <b>
+              <%= key %>
+            </b>
+            <p>
+              <%= valueArr[0] %>
+            </p>
+            <%   
+          break;
+    
+                 case "number": %>
+              <span>
+                <b>
+                  <%= key %>
+                </b>
+              </span> ::
+              <span>
+                <%= valueArr[0] %>
+              </span>
+              <br>
+              <%  
+                            break;
+       case "location": %>
+                <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
+
+                <%  
+                                  break;
+    
+     }%>
+
+
+                  <%
+    } %>
+      </form>
+      <p>________________________________________________________________________________</p>
+      <%  }
+    %>
+
+
+
+  </section>
 
   <%- include('partials/footer') -%>

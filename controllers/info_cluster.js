@@ -49,13 +49,20 @@ module.exports = {
         //can use findOne instead of find here bc find returns an array of objects, (in this case the arr of objects just had one thing anyways)
         const infoClusterDBObject = await Info_cluster.findOne({ _id: req.params.id })
 
-        //*Here we are 
+        console.log("This is req.params.id", req.params.id);
+        console.log("This is infoClusterDBObject._id", infoClusterDBObject._id);
+
+
+        //*Here we are writing the code to ultimately render a view that shows all the items in a specific info_cluster
         //TODO:
         //get info cluster model, that gives id
         //? using this? const Info_cluster = require("../models/Info_cluster"); Info_cluster.findOne(infoClusterDBObject._id)
         //db.collection("info_cluster_items").find( filter for info cluster id).toArray()
         //? here the filter will be for info_cluster_items that have  a cluster id of infoClusterDBObject._id
+        let infoClusterItems = await db.collection("info_cluster_items").find({ cluster_id: req.params.id }).toArray() //? why does this work with req.params.id but not with infoClusterDBObject._id when they are the same
         //loop through the items, then loop through the keys in each item
+        console.log("This is info Cluster Items in the getInfoView route", infoClusterItems);
+
         //from each item you take the array which will be the value of that key,
         //take last element in each array this will tell us how to display the data
 
@@ -63,6 +70,15 @@ module.exports = {
         //* all the info_cluster_items that have the targeted cluster id.
         //TODO: do the ejs for that extra rendering.
 
+
+        //_______unpacking infocluster items__________________________________
+
+        // for (let i = 0; i < infoClusterItems.length; i++) {
+
+        // }
+
+
+        //____________________________________________________________________
 
 
         //const userReturn = await User.find({ _id: req.params.id }) //TODO: need to make sure im finding the user password correctly
@@ -75,7 +91,60 @@ module.exports = {
         console.log(req.user.userName);
         console.log(req.user.email);
 
-        res.render("view_info_cluster.ejs", { infoClusterObjectReturn: infoClusterDBObject, user: currentUser }); //just brings us to the page to create a cluster
+        res.render("view_info_cluster.ejs", { infoClusterObjectReturn: infoClusterDBObject, user: currentUser, clusterArr: infoClusterItems }); //just brings us to the page to create a cluster
+    },
+    getInfoClusterAPI: async (req, res) => {
+        //*This is where we render the view of the single info cluster that was just created
+        //*This form is the one that dynamically generates the ejs form based on the user entered Schema
+
+        //can use findOne instead of find here bc find returns an array of objects, (in this case the arr of objects just had one thing anyways)
+        const infoClusterDBObject = await Info_cluster.findOne({ _id: req.params.id })
+
+        console.log("This is req.params.id", req.params.id);
+        console.log("This is infoClusterDBObject._id", infoClusterDBObject._id);
+
+
+        //*Here we are writing the code to ultimately render a view that shows all the items in a specific info_cluster
+        //TODO:
+        //get info cluster model, that gives id
+        //? using this? const Info_cluster = require("../models/Info_cluster"); Info_cluster.findOne(infoClusterDBObject._id)
+        //db.collection("info_cluster_items").find( filter for info cluster id).toArray()
+        //? here the filter will be for info_cluster_items that have  a cluster id of infoClusterDBObject._id
+        let infoClusterItems = await db.collection("info_cluster_items").find({ cluster_id: req.params.id }).toArray() //? why does this work with req.params.id but not with infoClusterDBObject._id when they are the same
+        //loop through the items, then loop through the keys in each item
+        console.log("This is info Cluster Items in the getInfoView route", infoClusterItems);
+
+        //from each item you take the array which will be the value of that key,
+        //take last element in each array this will tell us how to display the data
+
+        //* then send them back to the view info cluster page were we will then render the previous form along with
+        //* all the info_cluster_items that have the targeted cluster id.
+        //TODO: do the ejs for that extra rendering.
+
+
+        //_______unpacking infocluster items__________________________________
+
+        // for (let i = 0; i < infoClusterItems.length; i++) {
+
+        // }
+
+
+        //____________________________________________________________________
+
+
+        //const userReturn = await User.find({ _id: req.params.id }) //TODO: need to make sure im finding the user password correctly
+        console.log("This is req.user in getInfoClusterView", req.user);
+
+        console.log("This is infoClusterDBOject in the getInfoClusterView route ", infoClusterDBObject);
+        let currentUser = req.user
+        console.log("This is the current user", currentUser);
+        console.log(req.user._id);
+        console.log(req.user.userName);
+        console.log(req.user.email);
+
+        //render the API in the browers
+        res.send({ infoCluster: infoClusterDBObject, infoClusterItems: infoClusterItems })
+        // res.render("view_info_cluster.ejs", { infoClusterObjectReturn: infoClusterDBObject, user: currentUser, clusterArr: infoClusterItems }); //just brings us to the page to create a cluster
     },
     getInfoClusterCreate: (req, res) => {
         res.render("create_infocluster.ejs"); //just brings us to the page to create a cluster
