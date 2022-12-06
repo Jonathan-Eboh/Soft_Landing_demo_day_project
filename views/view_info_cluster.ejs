@@ -92,9 +92,14 @@
 
     <%
 
-      for( let i = 0; i<clusterArr.length; i++){ %>
-      <form action="#">
-        <%  
+      for( let i = 0; i<clusterArr.length; i++){ 
+        
+         console.log("This is the unique id of each cluster item:",clusterArr[i]._id)
+         let infoClusterItemID = clusterArr[i]._id
+        %>
+
+
+      <%  
          const currentItem = clusterArr[i]
         // const currentField = infoClusterObjectReturn.Schema[i].Field_Name
           const currentItemKeys = Object.keys(currentItem)
@@ -107,56 +112,60 @@
           switch(type){
             case "string":
          %>
-          <span>
-            <b>
-              <%= key %>
-            </b>
-          </span> ::
-          <span>
-            <%= valueArr[0] %>
-          </span>
-          <br>
-          <%  
+        <span>
+          <b>
+            <%= key %>
+          </b>
+        </span> ::
+        <span>
+          <%= valueArr[0] %>
+        </span>
+        <br>
+        <%  
             break;
             
           case "textArea":
           %>
 
-            <b>
-              <%= key %>
-            </b>
-            <p>
-              <%= valueArr[0] %>
-            </p>
-            <%   
+          <b>
+            <%= key %>
+          </b>
+          <p>
+            <%= valueArr[0] %>
+          </p>
+          <%   
           break;
     
                  case "number": %>
-              <span>
-                <b>
-                  <%= key %>
-                </b>
-              </span> ::
-              <span>
-                <%= valueArr[0] %>
-              </span>
-              <br>
-              <%  
+            <span>
+              <b>
+                <%= key %>
+              </b>
+            </span> ::
+            <span>
+              <%= valueArr[0] %>
+            </span>
+            <br>
+            <%  
                             break;
        case "location": %>
-                <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
+              <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
 
-                <%  
+              <%  
                                   break;
     
      }%>
 
 
-                  <%
+                <%
     } %>
-      </form>
-      <p>________________________________________________________________________________</p>
-      <%  }
+                  <br>
+                  <form action="/info/delete_cluster_item/<%= infoClusterItemID %>?_method=DELETE" method="POST" class="col-3" id="<%= infoClusterItemID %>">
+                    <button class=" fa fa-trash" type="submit"></button>
+                  </form>
+
+                  <p>________________________________________________________________________________</p>
+                  <%  }
     %>
 
 

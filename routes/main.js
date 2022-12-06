@@ -19,5 +19,6 @@ router.post("/signup", authController.postSignup);
 //InfoCluster Route
 router.get("/create_infocluster", ensureAuth, info_clusterController.getInfoClusterCreate);
 
-
+//* lets us view all info clusters!
+router.get('/view_all_info_clusters', info_clusterController.getAllInfoClustersView); //* you shouldnt have to be logged in to see all availible info clusters
 module.exports = router;

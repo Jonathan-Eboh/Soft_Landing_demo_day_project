@@ -1,0 +1,89 @@
+<%- include('partials/header') -%>
+
+    <h1>Hello</h1>
+
+
+    <!-- <option value="">--Data Type--</option>
+  <option value="number">Number</option>
+  <option value="string">Single line of text</option>
+  <option value="textArea">Multiple lines of text</option>
+  <option value="file">File</option>
+  <option value="location">Location</option> -->
+
+
+
+
+
+    <section class="clusterItemContainer">
+
+        <b>
+            <%= allClusters[0] %>
+                <br>
+        </b>
+
+        <% for( let i = 0; i <allClusters.length; i++ ) { 
+            
+        %>
+
+            <span>
+                <%= allClusters[i]._id %>
+                    <br>
+                    <%= allClusters[i].Title %>
+                        <br>
+                        <%= allClusters[i].createdAt %>
+
+                            <h4>Some fields from the API</h4>
+                            <span>
+                                <b>First Field</b>
+                                <%= allClusters[i].Schema[0].Field_Name %>
+                                    <br>
+                            </span>
+                            <span>
+                                <b>Second Field</b>
+                                <%= allClusters[i].Schema[1].Field_Name %>
+                                    <br>
+                            </span>
+                            <span>
+                                <b>Public Access?</b>
+
+
+                                <% if (allClusters[i].public === true) { %>
+                                    <p>Open to the public!</p>
+                                    <br>
+                                    <% }else{
+                                %>
+                                        <p>No Public Access</p>
+                                        <br>
+                                        <%}%>
+                            </span>
+                            <br>
+                            <form action="/info/update_cluster_item/<%= allClusters[i]._id %>?_method=PUT" method="POST" class="col-3">
+
+
+                                <select class="updatePublicAccess" name="newPublicAccessStatus">
+                                    <option value="">--Update Public Access Status--</option>
+                                    <option value="true">Open to the Public</option>
+                                    <option value="false">Private</option>
+                                </select>
+                                <button class=" fa fa-edit" type="submit">Update Access</button>
+                            </form>
+
+                            <b>
+                                <a href="/info/view_info_cluster/<%= allClusters[i]._id %>">Go to Cluster</a>
+                            </b>
+                            <br>
+                            <b>
+                                <a href="/info/api_info_cluster_items/<%= allClusters[i]._id %>">See raw API</a>
+                            </b>
+                            <p>________________________________________________________________________________</p>
+            </span>
+
+            <% } 
+        
+        %>
+
+
+    </section>
+
+
+    <%- include('partials/footer') -%>

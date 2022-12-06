@@ -2,7 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 //const Info_cluster = require("../models/Info_cluster"); //need to import comments model here
 const Info_cluster = require("../models/Info_cluster");
 const User = require("../models/User");
-
+const objectId = require("mongodb").ObjectID //! need this because info_cluster_items collection doesnt use a model
 
 
 
@@ -142,12 +142,19 @@ module.exports = {
         console.log(req.user.userName);
         console.log(req.user.email);
 
-        //render the API in the browers
+        //*render the API in the browers
         res.send({ infoCluster: infoClusterDBObject, infoClusterItems: infoClusterItems })
         // res.render("view_info_cluster.ejs", { infoClusterObjectReturn: infoClusterDBObject, user: currentUser, clusterArr: infoClusterItems }); //just brings us to the page to create a cluster
     },
     getInfoClusterCreate: (req, res) => {
         res.render("create_infocluster.ejs"); //just brings us to the page to create a cluster
+    },
+    getAllInfoClustersView: async (req, res) => {
+        let clusters = await Info_cluster.find()
+        let clusterArr
+        console.log("THIS IS clusters IN THE getAllInfoClusterView route", clusters);
+
+        res.render("all_info_clusters.ejs", { allClusters: clusters }); //brings us to the page to see all created info clusters
     },
     // createComment: async (req, res) => {
     //     console.log('working')
@@ -245,6 +252,23 @@ module.exports = {
             console.log(err);
         }
     },
+    updateInfoCluster: async (req, res) => {
+        try {
+            await Info_cluster.findOneAndUpdate(
+                { _id: req.params.id },
+                {
+                    $set: {
+                        // update the public access here
+                        public: req.body.newPublicAccessStatus
+                    }
+                }
+            );
+            console.log("UPDATED API PUBLIC STATUS PARAM");
+            res.redirect(`back`);
+        } catch (err) {
+            console.log(err);
+        }
+    },
     deleteComment: async (req, res) => {
         try {
             // Find post by id
@@ -259,4 +283,43 @@ module.exports = {
             res.redirect("/profile");
         }
     },
+    deleteClusterItem: async (req, res) => {
+        try {
+            // Find post by id
+            //let post = await Post.findById({ _id: req.params.id });
+            //let item = await db.collection("info_cluster_items").findById({ _id: req.params.id }); //? do we need this for anything?
+            // Delete image from cloudinary
+            //await cloudinary.uploader.destroy(post.cloudinaryId);
+            // Delete post from db
+            //await Post.remove({ _id: req.params.id });
+            console.log("This is req.params.id in the delete route!", req.params.id);
+
+            //global.db.collection("info_cluster_items").insertOne({ ...req.body, cluster_id: req.params.info_cluster_id }) //req.params.info_cluster_id is how we isolate the 
+
+            // await global.db.collection("info_cluster_items").deleteOne({ _id: objectId(req.params.id) }, (err, result) => {
+            //     console.log("Debug inside");
+
+            //     if (err) return res.send(500, err)
+            //     console.log('Message deleted!')
+            // }) //!
+
+
+            await global.db.collection("info_cluster_items").deleteOne({ _id: objectId(req.params.id) })
+
+
+            //db.collection('orders').remove({ complete: true }, )
+
+            console.log("Deleted Cluster item");
+            res.redirect('back');
+        } catch (err) {
+            res.redirect('back');
+        }
+    },
+
+    // deleteClusterItem: async (req, res) => {
+    //     console.log(req.params.id);
+
+    //     global.db.collection("info_cluster_items").deleteOne({ _id: objectId(req.params.id) })
+    // },
+
 };

@@ -25,10 +25,9 @@ router.get('/api_info_cluster_items/:id', infoClusterController.getInfoClusterAP
 //TODO:
 //router.get('/api_info_cluster', infoClusterController.getAllInfoClusters);
 
+//router.put("/likePost/:id", postsController.likePost);
+router.put("/update_cluster_item/:id", infoClusterController.updateInfoCluster)
 
-
-router.put("/likePost/:id", postsController.likePost);
-
-router.delete("/deletePost/:id", postsController.deletePost); //:id lets us plug in the object id to target our post
+router.delete("/delete_cluster_item/:id", infoClusterController.deleteClusterItem); //:id lets us plug in the object id to target our post, here its the specific id of the info_cluster item.
 
 module.exports = router;
