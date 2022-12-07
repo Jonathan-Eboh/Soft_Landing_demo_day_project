@@ -1,189 +1,8 @@
 <%- include('partials/header') -%>
   <link rel="stylesheet" href="/css/backgrounds.css">
 
-  <h1>Hello</h1>
 
-
-  <!-- <option value="">--Data Type--</option>
-  <option value="number">Number</option>
-  <option value="string">Single line of text</option>
-  <option value="textArea">Multiple lines of text</option>
-  <option value="file">File</option>
-  <option value="location">Location</option> -->
-
-  <form action="/info/create_infocluster_item/<%= infoClusterObjectReturn._id%>" method="POST" class="col-1" enctype="multipart/form-data">
-
-
-    <!-- Switch start tag -->
-    <!-- might need to change the const of currentField later -->
-    <% 
-              for(let i = 0;i<infoClusterObjectReturn.Schema.length;i++) {
-                 const currentField = infoClusterObjectReturn.Schema[i] 
-                   switch(currentField.Field_Type) {
-                     case "string":
-                     %>
-      <!-- first ejs end tag, under first case start -->
-
-      <label for="<%= currentField.Field_Name%>">
-        <%= currentField.Field_Name%>
-      </label>
-      <input type="text" name="<%= currentField.Field_Name%>" placeholder="Enter in data here">
-      <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
-      <% break;%>
-        <% case "textArea":%>
-          <label for="<%= currentField.Field_Name%>">
-            <%= currentField.Field_Name%>
-          </label>
-          <textarea name="<%= currentField.Field_Name%>" rows="5" cols="33" placeholder="Add a discription of your data here!"></textarea>
-          <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
-          <% break;%>
-            <% case "number":%>
-              <label for="<%= currentField.Field_Name%>">
-                <%= currentField.Field_Name%>
-              </label>
-              <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
-              <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
-              <% break;%>
-
-                <% case "location":%>
-                  <label for="<%= currentField.Field_Name%>">
-                    <%= currentField.Field_Name%>
-                  </label>
-                  <label for="lat">
-                    Latitude:
-                  </label>
-                  <div name="lat">
-                    <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
-                  </div>
-                  <label for="lon">
-                    Longitude:
-                  </label>
-                  <div>
-                    <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
-                  </div name="lon">
-                  <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
-                  <% break;%>
-
-                    <% case "file":
-                      case "img":
-                      case "audio":
-                      case "video":
-                    %>
-                      <label for="<%= currentField.Field_Name%>">
-                        <%= currentField.Field_Name%> test
-                      </label>
-
-                      <input type="file" name="file" accept="file/*">
-                      <input type="hidden">
-                      <input type="hidden" name="fileAssociation" value="<%= currentField.Field_Name%>:<%= currentField.Field_Type%>">
-                      <% break;%>
-                        <!-- Tags that hold the ending brackets for the for loop and the switch statement -->
-                        <%
-                  } 
-                } 
-                %>
-                          <!-- Switch end tag -->
-                          %>
-
-
-                          <button class="btn btn-primary fa fa-check-square" type="submit">Add Data!</button>
-  </form>
-
-
-  <section class="clusterItemContainer">
-
-    <%
-       //clusterArr is an array of objects
-      for( let i = 0; i<clusterArr.length; i++){ 
-        
-         console.log("This is the unique id of each cluster item:",clusterArr[i]._id)
-         let infoClusterItemID = clusterArr[i]._id
-         let clusterImage = clusterArr[i].image
-        %>
-
-
-      <%  
-         const currentItem = clusterArr[i] //the current object to unpack
-        
-        // const currentField = infoClusterObjectReturn.Schema[i].Field_Name
-          const currentItemKeys = Object.keys(currentItem)
-         for( let j = 0; j<currentItemKeys.length; j++){
-        const key = currentItemKeys[j] //field name
-        const valueArr = currentItem[key] //field value
-        if(!Array.isArray(valueArr)) continue
-         const type = valueArr[valueArr.length - 1] //data type
-         console.log("This is the currentField:", key, valueArr)
-          switch(type){
-            case "string":
-         %>
-        <span>
-          <b>
-            <%= key %>
-          </b>
-        </span> ::
-        <span>
-          <%= valueArr[0] %>
-        </span>
-        <br>
-        <%  
-            break;
-            
-          case "textArea":
-          %>
-
-          <b>
-            <%= key %>
-          </b>
-          <p>
-            <%= valueArr[0] %>
-          </p>
-          <%   
-          break;
-    
-                 case "number": %>
-            <span>
-              <b>
-                <%= key %>
-              </b>
-            </span> ::
-            <span>
-              <%= valueArr[0] %>
-            </span>
-            <br>
-            <%  
-          break;
-       case "location": %>
-              <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
-
-              <%  
-          break;
-        case "file":
-          case "img":
- %>
-                <img src="<%= valueArr[0] %>" alt=""> Test
-                <%  
-                    break;
-     }%>
-
-
-                  <%
-    } %>
-                    <br>
-                    <form action="/info/delete_cluster_item/<%= infoClusterItemID %>?_method=DELETE" method="POST" class="col-3" id="<%= infoClusterItemID %>">
-                      <%= clusterImage  %>
-                        <button class=" fa fa-trash" type="submit"></button>
-                    </form>
-
-                    <p>________________________________________________________________________________</p>
-                    <%  }
-    %>
-
-
-
-  </section>
-
-  <body class="profileBody">
-
+  <header class="greenSky pt-8">
     <!--Navbar-->
     <nav class="relative container mx-auto p-6 white rounded-lg">
       <!-- Flex container -->
@@ -198,14 +17,15 @@
           <a href="/view_all_info_clusters" class="hover:text-darkGrayishBlue">See all Clusters</a>
           <a href="/create_infocluster" class="hover:text-darkGrayishBlue">Create Info Cluster</a>
 
-          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+          <a href="/profile" class="hover:text-darkGrayishBlue">Home</a>
 
           <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+          <a href="/logout" class="p-3 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Log Out</a>
         </div>
         <!-- Buttons -->
-        <div class="flex flex-row">
-          <a href="/logout" class="hidden p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Log Out</a>
-        </div>
+
+
+
         <!-- Hamburger Icon -->
         <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
 
@@ -226,6 +46,12 @@
         </div>
       </div>
     </nav>
+  </header>
+
+
+  <body class="profileBody">
+
+
 
     <main class="profile-page">
 
@@ -233,131 +59,20 @@
 
       <div class="container mx-auto px-4">
         <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
-          <div class="px-6">
 
-            <div class="flex flex-wrap justify-center">
-
-
-              <div class="w-full lg:w-4/12 px-4 lg:order-1">
-                <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
-                  <div class="relative">
-
-
-
-                  </div>
-                </div>
-              </div>
-              <div class="flex justify-center py-4 lg:pt-4 pt-8">
-                -+-
-              </div>
-            </div>
-          </div>
           <div class="flex flex-col text-center mt-12">
-            <img alt="..." src="imgs/avatar-anisha.png" class="shadow-xl rounded-full h-auto align-middle border-none absolute lg: max-w-150-px">
-
 
             <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
-              Thank you for your interest in this project.
+              This is your data base!
             </h3>
             <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
 
-              Please fill out this form to generate the basic structure of the database that will hold your apis data!
+              A unique form has been generated based on your database structure
+              <br> use this form to add more points of data to your API!
             </div>
 
             <div class="testbox">
-              <form action="/info/create_infocluster" enctype="multipart/form-data" method="POST">
-                <div class="banner">
-                  <h1>--Create Info_Cluster Form--</h1>
-                </div>
 
-                <div class="item">
-                  <p>Enter a title for your info cluster
-                    <span class="">*</span>
-                  </p>
-                  <div class="name-item">
-
-                    <input type="text" name="title" placeholder="Title" required/>
-                  </div>
-                </div>
-
-                <h3>What information would you like to store?</h3>
-                <div class="item">
-                  <p>Data types
-                    <span class="">*</span>
-                  </p>
-                  <div class="name-item">
-                    <div>
-                      <input type="text" name="field_name" placeholder="name of piece of data" />
-                      <select name="field_type" id="">
-                        <option value="">--Data Type--</option>
-                        <option value="number">Number</option>
-                        <option value="string">Single line of text</option>
-                        <option value="textArea">Multiple lines of text</option>
-                        <option value="file">File</option>
-                        <option value="location">Location</option>
-                      </select>
-
-                    </div>
-                    <div>
-                      <input type="text" name="field_name" placeholder="name of piece of data" />
-                      <select name="field_type" id="">
-                        <option value="">--Data Type--</option>
-                        <option value="number">Number</option>
-                        <option value="string">Single line of text</option>
-                        <option value="textArea">Multiple lines of text</option>
-                        <option value="file">File</option>
-                        <option value="location">Location</option>
-                      </select>
-
-                    </div>
-                    <div>
-                      <input type="text" name="field_name" placeholder="name of piece of data" />
-                      <select name="field_type" id="">
-                        <option value="">--Data Type--</option>
-                        <option value="number">Number</option>
-                        <option value="string">Single line of text</option>
-                        <option value="textArea">Multiple lines of text</option>
-                        <option value="file">File</option>
-                        <option value="location">Location</option>
-                      </select>
-
-                    </div>
-                    <div>
-                      <input type="text" name="field_name" placeholder="name of piece of data" />
-                      <select name="field_type" id="">
-                        <option value="">--Data Type--</option>
-                        <option value="number">Number</option>
-                        <option value="string">Single line of text</option>
-                        <option value="textArea">Multiple lines of text</option>
-                        <option value="file">File</option>
-                        <option value="location">Location</option>
-                      </select>
-
-                    </div>
-                    <div>
-                      <input type="text" name="field_name" placeholder="name of piece of data" />
-                      <select name="field_type" id="">
-                        <option value="">--Data Type--</option>
-                        <option value="number">Number</option>
-                        <option value="string">Single line of text</option>
-                        <option value="textArea">Multiple lines of text</option>
-                        <option value="file">File</option>
-                        <option value="location">Location</option>
-                      </select>
-
-                    </div>
-                  </div>
-                </div>
-
-                <div class="item">
-                  <p>Info Cluster schema image (will be visible to all for databases set to public):</p>
-                  <input type="text" name="providing" />
-                  <input type="file" name="file" accept="file/*">
-                </div>
-                <div class="btn-block">
-                  <button type="submit" href="/">Create Your Info Cluster!</button>
-                </div>
-              </form>
               <form class="flex flex-col" action="/info/create_infocluster_item/<%= infoClusterObjectReturn._id%>" method="POST" enctype="multipart/form-data">
 
                 <div class="flex flex-col self-center">
@@ -401,13 +116,13 @@
                                   Latitude:
                                 </label>
                                 <div name="lat">
-                                  <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                                  <input type="number" name="<%= currentField.Field_Name%>" min="-9999" max="9999">
                                 </div>
                                 <label for="lon">
                                   Longitude:
                                 </label>
                                 <div>
-                                  <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                                  <input type="number" name="<%= currentField.Field_Name%>" min="-9999" max="9999">
                                 </div name="lon">
                                 <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
                                 <% break;%>
@@ -434,16 +149,111 @@
                                         %>
 
 
-                                        <button class="btn btn-primary fa fa-check-square" type="submit">Add Data!</button>
+                                        <button class="hidden p-3 px-6 pt-2 mt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block fa fa-check-square"
+                                          type="submit">Add Data!</button>
                 </div>
               </form>
+              <section class="clusterItemContainer">
+
+                <%
+                       //clusterArr is an array of objects
+                      for( let i = 0; i<clusterArr.length; i++){ 
+                        
+                         console.log("This is the unique id of each cluster item:",clusterArr[i]._id)
+                         let infoClusterItemID = clusterArr[i]._id
+                         let clusterImage = clusterArr[i].image
+                        %>
+
+
+                  <%  
+                         const currentItem = clusterArr[i] //the current object to unpack
+                        
+                        // const currentField = infoClusterObjectReturn.Schema[i].Field_Name
+                          const currentItemKeys = Object.keys(currentItem)
+                         for( let j = 0; j<currentItemKeys.length; j++){
+                        const key = currentItemKeys[j] //field name
+                        const valueArr = currentItem[key] //field value
+                        if(!Array.isArray(valueArr)) continue
+                         const type = valueArr[valueArr.length - 1] //data type
+                         console.log("This is the currentField:", key, valueArr)
+                          switch(type){
+                            case "string":
+                         %>
+                    <div class="flex flex-col self-center">
+                      <span>
+                        <b>
+                          <%= key %>
+                        </b>
+                      </span>
+                      <span>
+                        <%= valueArr[0] %>
+                      </span>
+                      <br>
+                      <%  
+                            break;
+                            
+                          case "textArea":
+                          %>
+
+                        <b>
+                          <%= key %>
+                        </b>
+                        <p>
+                          <%= valueArr[0] %>
+                        </p>
+                        <%   
+                          break;
+                    
+                                 case "number": %>
+                          <span>
+                            <b>
+                              <%= key %>
+                            </b>
+                          </span>
+                          <span>
+                            <%= valueArr[0] %>
+                          </span>
+                          <br>
+                          <%  
+                          break;
+                       case "location": %>
+                            <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
+
+                            <%  
+                          break;
+                        case "file":
+                          case "img":
+                 %>
+                              <img src="<%= valueArr[0] %>" alt="">
+                              <%  
+                                    break;
+                     }%>
+
+
+                                <%
+                    } %>
+                                  <br>
+                                  <form action="/info/delete_cluster_item/<%= infoClusterItemID %>?_method=DELETE" method="POST" class="flex flex-col self-center"
+                                    id="<%= infoClusterItemID %>">
+                                    <%= clusterImage  %>
+                                      <button class=" fa fa-trash" type="submit"> Delete</button>
+                                  </form>
+
+                                  <p>________________________________________________________________________________</p>
+                    </div>
+                    <%  }
+                    %>
+
+
+
+              </section>
             </div>
           </div>
           <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
             <div class="flex flex-wrap justify-center">
               <div class="w-full lg:w-9/12 px-4">
                 <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
-                  -+-
+
                 </p>
 
               </div>

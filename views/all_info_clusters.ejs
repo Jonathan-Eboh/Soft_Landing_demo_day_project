@@ -1,89 +1,276 @@
 <%- include('partials/header') -%>
-
-    <h1>Hello</h1>
-
-
-    <!-- <option value="">--Data Type--</option>
-  <option value="number">Number</option>
-  <option value="string">Single line of text</option>
-  <option value="textArea">Multiple lines of text</option>
-  <option value="file">File</option>
-  <option value="location">Location</option> -->
+    <link rel="stylesheet" href="/css/backgrounds.css">
 
 
+    <header class="greenSky pt-8">
+        <!--Navbar-->
+        <nav class="relative container mx-auto p-6 white rounded-lg">
+            <!-- Flex container -->
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
+                <div class="pt-2 flex flex-row">
+                    <img src="imgs/Soft_landing_pillows_logo.png" id="pillowLogoImg" alt="">
+                    <img src="imgs/Soft_landing.png" alt="">
+                </div>
+                <!-- Menu Items -->
+                <div class="hidden space-x-6 md:flex">
+                    <a href="/view_all_info_clusters" class="hover:text-darkGrayishBlue">See all Clusters</a>
+                    <a href="/create_infocluster" class="hover:text-darkGrayishBlue">Create Info Cluster</a>
+
+                    <a href="/profile" class="hover:text-darkGrayishBlue">Home</a>
+
+                    <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+                    <a href="/logout" class="p-3 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Log Out</a>
+                </div>
+                <!-- Buttons -->
 
 
 
-    <section class="clusterItemContainer">
+                <!-- Hamburger Icon -->
+                <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
 
-        <b>
-            <%= allClusters[0] %>
-                <br>
-        </b>
+                    <span class="hamburger-top"></span>
+                    <span class="hamburger-middle"></span>
+                    <span class="hamburger-bottom"></span>
 
-        <% for( let i = 0; i <allClusters.length; i++ ) { 
-            
-        %>
-
-            <span>
-                <%= allClusters[i]._id %>
-                    <br>
-                    <%= allClusters[i].Title %>
-                        <br>
-                        <%= allClusters[i].createdAt %>
-
-                            <h4>Some fields from the API</h4>
-                            <span>
-                                <b>First Field</b>
-                                <%= allClusters[i].Schema[0].Field_Name %>
-                                    <br>
-                            </span>
-                            <span>
-                                <b>Second Field</b>
-                                <%= allClusters[i].Schema[1].Field_Name %>
-                                    <br>
-                            </span>
-                            <span>
-                                <b>Public Access?</b>
+                </button>
+            </div>
+            <!-- Mobile Menu -->
+            <div class="md:hidden">
+                <div id="menu" class="absolute flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+                    <a href="#" class="hover:text-darkGrayishBlue">Pricing</a>
+                    <a href="#" class="hover:text-darkGrayishBlue">Product</a>
+                    <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+                    <a href="#" class="hover:text-darkGrayishBlue">Careers</a>
+                    <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+                </div>
+            </div>
+        </nav>
+    </header>
 
 
-                                <% if (allClusters[i].public === true) { %>
-                                    <p>Open to the public!</p>
-                                    <br>
-                                    <% }else{
+    <body class="profileBody">
+
+
+        <main class="profile-page">
+
+
+
+            <div class="container mx-auto px-4">
+                <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+                    <div class="px-6">
+
+
+                    </div>
+                    <div class="flex flex-col text-center mt-12">
+
+
+
+                        <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+                            All APIs
+                        </h3>
+                        <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold">
+
+                            Below you can browse a list of all the APIs people have created!
+                            <br>You will see a summary of some of the information available in the API
+                            <br>Clicking "Go to Cluster" will allow you to see and contribute to that API
+                            <br>You can also see and grab the JSON view of the API by clicking the link at the bottom of each
+                            summary.
+                        </div>
+
+                        <section class="clusterItemContainer">
+
+                            <% for( let i = 0; i <allClusters.length; i++ ) { 
+                                    
                                 %>
-                                        <p>No Public Access</p>
+
+                                <section class="my-2 mx-1 border-4 flex flex-col self-center rounded-lg" id="clusterItemBox">
+
+
+                                    <br>
+                                    <%= allClusters[i].Title %>
                                         <br>
-                                        <%}%>
-                            </span>
-                            <br>
-                            <form action="/info/update_cluster_item/<%= allClusters[i]._id %>?_method=PUT" method="POST" class="col-3">
+                                        <%= allClusters[i].createdAt %>
+
+                                            <h4>Some fields from the API</h4>
+                                            <span>
+                                                <b>First Field</b>
+                                                <%= allClusters[i].Schema[0].Field_Name %>
+                                                    <br>
+                                            </span>
+                                            <span>
+                                                <b>Second Field</b>
+                                                <%= allClusters[i].Schema[1].Field_Name %>
+                                                    <br>
+                                            </span>
+                                            <span>
+                                                <b>Public Access?</b>
 
 
-                                <select class="updatePublicAccess" name="newPublicAccessStatus">
-                                    <option value="">--Update Public Access Status--</option>
-                                    <option value="true">Open to the Public</option>
-                                    <option value="false">Private</option>
-                                </select>
-                                <button class=" fa fa-edit" type="submit">Update Access</button>
-                            </form>
-
-                            <b>
-                                <a href="/info/view_info_cluster/<%= allClusters[i]._id %>">Go to Cluster</a>
-                            </b>
-                            <br>
-                            <b>
-                                <a href="/info/api_info_cluster_items/<%= allClusters[i]._id %>">See raw API</a>
-                            </b>
-                            <p>________________________________________________________________________________</p>
-            </span>
-
-            <% } 
-        
-        %>
+                                                <% if (allClusters[i].public === true) { %>
+                                                    <p>Open to the public!</p>
+                                                    <br>
+                                                    <% }else{
+                                                        %>
+                                                        <p>No Public Access</p>
+                                                        <br>
+                                                        <%}%>
+                                            </span>
+                                            <br>
+                                            <form action="/info/update_cluster_item/<%= allClusters[i]._id %>?_method=PUT" method="POST" class="flex flex-col self-center col-3">
 
 
-    </section>
+                                                <select class="updatePublicAccess" name="newPublicAccessStatus">
+                                                    <option value="">--Update Public Access Status--</option>
+                                                    <option value="true">Open to the Public</option>
+                                                    <option value="false">Private</option>
+                                                </select>
+                                                <button class=" fa fa-edit" type="submit">Update Access</button>
+                                            </form>
 
+                                            <b>
+                                                <a href="/info/view_info_cluster/<%= allClusters[i]._id %>">Go to Cluster</a>
+                                            </b>
+                                            <br>
+                                            <b>
+                                                <a href="/info/api_info_cluster_items/<%= allClusters[i]._id %>">See raw API</a>
+                                            </b>
+                                            <p>________________________________________________________________________________</p>
+                                </section>
+
+                                <% } 
+                                
+                                %>
+
+
+                        </section>
+
+
+
+                        <div class="testbox">
+
+
+                            <section class="clusterItemContainer">
+
+                            </section>
+                        </div>
+                    </div>
+                    <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+                        <div class="flex flex-wrap justify-center">
+                            <div class="w-full lg:w-9/12 px-4">
+                                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+
+                                </p>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+
+
+        </main>
+
+
+        <!-- Hero Section -->
+        <section id="hero">
+            <!-- Flex Container -->
+            <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
+
+
+            </div>
+        </section>
+        <!-- CTA Section -->
+        <section id="cta" class="bg-brightRed">
+            <!-- Flex Container -->
+            <div class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:speace-y-0">
+                <!-- Heading -->
+                <h2 class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+
+                </h2>
+                <!-- Button -->
+                <div>
+                    <a href="/logout" class="p-3 px-6 pt-2 text-brightRed font-bold bg-white rounded-lg shadow-2xl baseline hover:bg-gray-900">Log Out</a>
+
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-veryDarkBlue">
+            <!-- Flex Container -->
+            <div class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+                <!-- Logo and social links container -->
+                <div class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+                    <div class="mx-auto my-6 text-center text-white md:hidden">
+                        Copyright &copy; 2022, All Rights Reserved
+                    </div>
+                    <!-- Logo -->
+                    <div>
+                        <img src="imgs/Soft_landing_dark.png" class="h-8" alt="">
+                    </div>
+                    <!-- Social Links Container -->
+                    <div class="flex justify-center space-x-4">
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-facebook.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-youtube.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-twitter.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-pinterest.svg" alt="" class="h-8">
+                        </a>
+                        <!-- Link 1 -->
+                        <a href="#">
+                            <img src="imgs/icon-instagram.svg" alt="" class="h-8">
+                        </a>
+                    </div>
+                </div>
+                <!-- List Container -->
+                <div class="flex justify-around space-x-32">
+                    <div class="flex flex-col space-y-3 text-white">
+                        <a href="#" class="hover:text-brightRed">Home</a>
+                        <a href="#" class="hover:text-brightRed">Pricing</a>
+                        <a href="#" class="hover:text-brightRed">Products</a>
+                        <a href="#" class="hover:text-brightRed">About</a>
+                    </div>
+
+                </div>
+                <div class="flex justify-around space-x-32">
+                    <div class="flex flex-col space-y-3 text-white">
+                        <a href="#" class="hover:text-brightRed">Careers</a>
+                        <a href="#" class="hover:text-brightRed">Community</a>
+                        <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+
+                    </div>
+
+                </div>
+                <!-- Input Container -->
+                <div class="flex flex-col justify-btween">
+                    <form action="#">
+                        <div class="flex space-x-3">
+                            <input type="text" class="flex-1 px4 rounded-lg focus:outline-none" placeholder="Updated in your inbox">
+                            <button class="px-6 py-2 text-white rounded-lg bg-brightRed hover:bg-brightRedLight focus:outline-none">
+                                Go
+                            </button>
+                        </div>
+                    </form>
+                    <div class="hidden text-white md:block">
+                        Copyright &copy; 2022, All Rights Reserved
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+    </body>
 
     <%- include('partials/footer') -%>
