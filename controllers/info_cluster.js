@@ -32,6 +32,21 @@ module.exports = {
         console.log("THIS IS REQ.BODY AND REQ.PARAMS IN THE CREATE INFO CLUSTER ITEM ROUTE", req.body, req.params);
         console.log("This is global.db in info cluster controller", global.db);
 
+
+        //*Cloudinary stuff
+
+
+        const result = await cloudinary.uploader.upload(req.file.path)
+
+        const fileAssociation = req.body.fileAssociation
+        if (fileAssociation) {
+            const a = fileAssociation.split(':')
+            req.body[a[0]] = [result.secure_url, result.public_id, 'img']
+        }
+
+        console.log("??????????????????????????????????????", req.body);
+
+
         //put the addtions to the target API in the "info_cluster_items" collection here
         global.db.collection("info_cluster_items").insertOne({ ...req.body, cluster_id: req.params.info_cluster_id }) //req.params.info_cluster_id is how we isolate the 
         // res.send("TODO"); was just used for testing, we actually want to send them to the view_info_cluster page via the below redirect
@@ -198,7 +213,7 @@ module.exports = {
             if (!req.body.field_name[i]) break; //stop looping upon empty element or else Mongo get angry >:(
 
             newInfoCluster.Schema.push({
-                Field_Name: req.body.field_name[i], //remember we are working with arrays of field names and field types
+                Field_Name: req.body.field_name[i], //*remember we are working with arrays of field names and field types bc thats the default behavior for dom nodes that share the same name attribute
                 Field_Type: req.body.field_type[i]
             })
         }

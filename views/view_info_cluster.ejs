@@ -1,4 +1,5 @@
 <%- include('partials/header') -%>
+  <link rel="stylesheet" href="/css/backgrounds.css">
 
   <h1>Hello</h1>
 
@@ -69,11 +70,12 @@
                       case "video":
                     %>
                       <label for="<%= currentField.Field_Name%>">
-                        <%= currentField.Field_Name%>
+                        <%= currentField.Field_Name%> test
                       </label>
 
-                      <input type="file" name="<%= currentField.Field_Name%>" accept="file/*">
-                      <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                      <input type="file" name="file" accept="file/*">
+                      <input type="hidden">
+                      <input type="hidden" name="fileAssociation" value="<%= currentField.Field_Name%>:<%= currentField.Field_Type%>">
                       <% break;%>
                         <!-- Tags that hold the ending brackets for the for loop and the switch statement -->
                         <%
@@ -91,16 +93,18 @@
   <section class="clusterItemContainer">
 
     <%
-
+       //clusterArr is an array of objects
       for( let i = 0; i<clusterArr.length; i++){ 
         
          console.log("This is the unique id of each cluster item:",clusterArr[i]._id)
          let infoClusterItemID = clusterArr[i]._id
+         let clusterImage = clusterArr[i].image
         %>
 
 
       <%  
-         const currentItem = clusterArr[i]
+         const currentItem = clusterArr[i] //the current object to unpack
+        
         // const currentField = infoClusterObjectReturn.Schema[i].Field_Name
           const currentItemKeys = Object.keys(currentItem)
          for( let j = 0; j<currentItemKeys.length; j++){
@@ -147,29 +151,409 @@
             </span>
             <br>
             <%  
-                            break;
+          break;
        case "location": %>
               <a href="https://maps.google.com/?q=<%= valueArr[0] %>,<%= valueArr[1] %>">See Location in map</a>
 
               <%  
-                                  break;
-    
+          break;
+        case "file":
+          case "img":
+ %>
+                <img src="<%= valueArr[0] %>" alt=""> Test
+                <%  
+                    break;
      }%>
 
 
-                <%
+                  <%
     } %>
-                  <br>
-                  <form action="/info/delete_cluster_item/<%= infoClusterItemID %>?_method=DELETE" method="POST" class="col-3" id="<%= infoClusterItemID %>">
-                    <button class=" fa fa-trash" type="submit"></button>
-                  </form>
+                    <br>
+                    <form action="/info/delete_cluster_item/<%= infoClusterItemID %>?_method=DELETE" method="POST" class="col-3" id="<%= infoClusterItemID %>">
+                      <%= clusterImage  %>
+                        <button class=" fa fa-trash" type="submit"></button>
+                    </form>
 
-                  <p>________________________________________________________________________________</p>
-                  <%  }
+                    <p>________________________________________________________________________________</p>
+                    <%  }
     %>
 
 
 
   </section>
 
+  <body class="profileBody">
+
+    <!--Navbar-->
+    <nav class="relative container mx-auto p-6 white rounded-lg">
+      <!-- Flex container -->
+      <div class="flex items-center justify-between">
+        <!-- Logo -->
+        <div class="pt-2 flex flex-row">
+          <img src="imgs/Soft_landing_pillows_logo.png" id="pillowLogoImg" alt="">
+          <img src="imgs/Soft_landing.png" alt="">
+        </div>
+        <!-- Menu Items -->
+        <div class="hidden space-x-6 md:flex">
+          <a href="/view_all_info_clusters" class="hover:text-darkGrayishBlue">See all Clusters</a>
+          <a href="/create_infocluster" class="hover:text-darkGrayishBlue">Create Info Cluster</a>
+
+          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+
+          <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+        </div>
+        <!-- Buttons -->
+        <div class="flex flex-row">
+          <a href="/logout" class="hidden p-3 px-6 pt-2 text-white font-bold bg-brightRed rounded-lg baseline hover:bg-brightRedLight md:block">Log Out</a>
+        </div>
+        <!-- Hamburger Icon -->
+        <button id="menu-btn" class="block hamburger md:hidden focus:outline-none">
+
+          <span class="hamburger-top"></span>
+          <span class="hamburger-middle"></span>
+          <span class="hamburger-bottom"></span>
+
+        </button>
+      </div>
+      <!-- Mobile Menu -->
+      <div class="md:hidden">
+        <div id="menu" class="absolute flex-col items-center self-end hidden py-8 mt-10 space-y-6 font-bold bg-white sm:w-auto sm:self-center left-6 right-6 drop-shadow-md">
+          <a href="#" class="hover:text-darkGrayishBlue">Pricing</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Product</a>
+          <a href="#" class="hover:text-darkGrayishBlue">About Us</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Careers</a>
+          <a href="#" class="hover:text-darkGrayishBlue">Community</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="profile-page">
+
+
+
+      <div class="container mx-auto px-4">
+        <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg -mt-64">
+          <div class="px-6">
+
+            <div class="flex flex-wrap justify-center">
+
+
+              <div class="w-full lg:w-4/12 px-4 lg:order-1">
+                <div class="w-full lg:w-3/12 px-4 lg:order-2 flex justify-center">
+                  <div class="relative">
+
+
+
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-center py-4 lg:pt-4 pt-8">
+                -+-
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col text-center mt-12">
+            <img alt="..." src="imgs/avatar-anisha.png" class="shadow-xl rounded-full h-auto align-middle border-none absolute lg: max-w-150-px">
+
+
+            <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700 mb-2">
+              Thank you for your interest in this project.
+            </h3>
+            <div class="text-sm leading-normal mt-0 mb-2 text-blueGray-400 font-bold uppercase">
+
+              Please fill out this form to generate the basic structure of the database that will hold your apis data!
+            </div>
+
+            <div class="testbox">
+              <form action="/info/create_infocluster" enctype="multipart/form-data" method="POST">
+                <div class="banner">
+                  <h1>--Create Info_Cluster Form--</h1>
+                </div>
+
+                <div class="item">
+                  <p>Enter a title for your info cluster
+                    <span class="">*</span>
+                  </p>
+                  <div class="name-item">
+
+                    <input type="text" name="title" placeholder="Title" required/>
+                  </div>
+                </div>
+
+                <h3>What information would you like to store?</h3>
+                <div class="item">
+                  <p>Data types
+                    <span class="">*</span>
+                  </p>
+                  <div class="name-item">
+                    <div>
+                      <input type="text" name="field_name" placeholder="name of piece of data" />
+                      <select name="field_type" id="">
+                        <option value="">--Data Type--</option>
+                        <option value="number">Number</option>
+                        <option value="string">Single line of text</option>
+                        <option value="textArea">Multiple lines of text</option>
+                        <option value="file">File</option>
+                        <option value="location">Location</option>
+                      </select>
+
+                    </div>
+                    <div>
+                      <input type="text" name="field_name" placeholder="name of piece of data" />
+                      <select name="field_type" id="">
+                        <option value="">--Data Type--</option>
+                        <option value="number">Number</option>
+                        <option value="string">Single line of text</option>
+                        <option value="textArea">Multiple lines of text</option>
+                        <option value="file">File</option>
+                        <option value="location">Location</option>
+                      </select>
+
+                    </div>
+                    <div>
+                      <input type="text" name="field_name" placeholder="name of piece of data" />
+                      <select name="field_type" id="">
+                        <option value="">--Data Type--</option>
+                        <option value="number">Number</option>
+                        <option value="string">Single line of text</option>
+                        <option value="textArea">Multiple lines of text</option>
+                        <option value="file">File</option>
+                        <option value="location">Location</option>
+                      </select>
+
+                    </div>
+                    <div>
+                      <input type="text" name="field_name" placeholder="name of piece of data" />
+                      <select name="field_type" id="">
+                        <option value="">--Data Type--</option>
+                        <option value="number">Number</option>
+                        <option value="string">Single line of text</option>
+                        <option value="textArea">Multiple lines of text</option>
+                        <option value="file">File</option>
+                        <option value="location">Location</option>
+                      </select>
+
+                    </div>
+                    <div>
+                      <input type="text" name="field_name" placeholder="name of piece of data" />
+                      <select name="field_type" id="">
+                        <option value="">--Data Type--</option>
+                        <option value="number">Number</option>
+                        <option value="string">Single line of text</option>
+                        <option value="textArea">Multiple lines of text</option>
+                        <option value="file">File</option>
+                        <option value="location">Location</option>
+                      </select>
+
+                    </div>
+                  </div>
+                </div>
+
+                <div class="item">
+                  <p>Info Cluster schema image (will be visible to all for databases set to public):</p>
+                  <input type="text" name="providing" />
+                  <input type="file" name="file" accept="file/*">
+                </div>
+                <div class="btn-block">
+                  <button type="submit" href="/">Create Your Info Cluster!</button>
+                </div>
+              </form>
+              <form class="flex flex-col" action="/info/create_infocluster_item/<%= infoClusterObjectReturn._id%>" method="POST" enctype="multipart/form-data">
+
+                <div class="flex flex-col self-center">
+
+                  <!-- Switch start tag -->
+                  <!-- might need to change the const of currentField later -->
+                  <% 
+                              for(let i = 0;i<infoClusterObjectReturn.Schema.length;i++) {
+                                 const currentField = infoClusterObjectReturn.Schema[i] 
+                                   switch(currentField.Field_Type) {
+                                     case "string":
+                                     %>
+                    <!-- first ejs end tag, under first case start -->
+
+                    <label for="<%= currentField.Field_Name%>">
+                      <%= currentField.Field_Name%>
+                    </label>
+                    <input type="text" name="<%= currentField.Field_Name%>" placeholder="Enter in data here">
+                    <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                    <% break;%>
+                      <% case "textArea":%>
+                        <label for="<%= currentField.Field_Name%>">
+                          <%= currentField.Field_Name%>
+                        </label>
+                        <textarea name="<%= currentField.Field_Name%>" rows="5" cols="33" placeholder="Add a discription of your data here!"></textarea>
+                        <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                        <% break;%>
+                          <% case "number":%>
+                            <label for="<%= currentField.Field_Name%>">
+                              <%= currentField.Field_Name%>
+                            </label>
+                            <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                            <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                            <% break;%>
+
+                              <% case "location":%>
+                                <label for="<%= currentField.Field_Name%>">
+                                  <%= currentField.Field_Name%>
+                                </label>
+                                <label for="lat">
+                                  Latitude:
+                                </label>
+                                <div name="lat">
+                                  <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                                </div>
+                                <label for="lon">
+                                  Longitude:
+                                </label>
+                                <div>
+                                  <input type="number" name="<%= currentField.Field_Name%>" min="0" max="9999">
+                                </div name="lon">
+                                <input type="hidden" name="<%= currentField.Field_Name%>" value="<%= currentField.Field_Type%>">
+                                <% break;%>
+
+                                  <% case "file":
+                                      case "img":
+                                      case "audio":
+                                      case "video":
+                                    %>
+                                    <label for="<%= currentField.Field_Name%>">
+                                      <%= currentField.Field_Name%> test
+                                    </label>
+
+                                    <input type="file" name="file" accept="file/*">
+                                    <input type="hidden">
+                                    <input type="hidden" name="fileAssociation" value="<%= currentField.Field_Name%>:<%= currentField.Field_Type%>">
+                                    <% break;%>
+                                      <!-- Tags that hold the ending brackets for the for loop and the switch statement -->
+                                      <%
+                                  } 
+                                } 
+                                %>
+                                        <!-- Switch end tag -->
+                                        %>
+
+
+                                        <button class="btn btn-primary fa fa-check-square" type="submit">Add Data!</button>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="mt-10 py-10 border-t border-blueGray-200 text-center">
+            <div class="flex flex-wrap justify-center">
+              <div class="w-full lg:w-9/12 px-4">
+                <p class="mb-4 text-lg leading-relaxed text-blueGray-700">
+                  -+-
+                </p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+
+    </main>
+
+
+    <!-- Hero Section -->
+    <section id="hero">
+      <!-- Flex Container -->
+      <div class="container flex flex-col-reverse items-center px-6 mx-auto mt-10 space-y-0 md:space-y-0 md:flex-row">
+
+
+      </div>
+    </section>
+    <!-- CTA Section -->
+    <section id="cta" class="bg-brightRed">
+      <!-- Flex Container -->
+      <div class="container flex flex-col items-center justify-between px-6 py-24 mx-auto space-y-12 md:py-12 md:flex-row md:speace-y-0">
+        <!-- Heading -->
+        <h2 class="text-5xl font-bold leading-tight text-center text-white md:text-4xl md:max-w-xl md:text-left">
+
+        </h2>
+        <!-- Button -->
+        <div>
+          <a href="/logout" class="p-3 px-6 pt-2 text-brightRed font-bold bg-white rounded-lg shadow-2xl baseline hover:bg-gray-900">Log Out</a>
+
+        </div>
+      </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-veryDarkBlue">
+      <!-- Flex Container -->
+      <div class="container flex flex-col-reverse justify-between px-6 py-10 mx-auto space-y-8 md:flex-row md:space-y-0">
+        <!-- Logo and social links container -->
+        <div class="flex flex-col-reverse items-center justify-between space-y-12 md:flex-col md:space-y-0 md:items-start">
+          <div class="mx-auto my-6 text-center text-white md:hidden">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+          <!-- Logo -->
+          <div>
+            <img src="imgs/Soft_landing_dark.png" class="h-8" alt="">
+          </div>
+          <!-- Social Links Container -->
+          <div class="flex justify-center space-x-4">
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-facebook.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-youtube.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-twitter.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-pinterest.svg" alt="" class="h-8">
+            </a>
+            <!-- Link 1 -->
+            <a href="#">
+              <img src="imgs/icon-instagram.svg" alt="" class="h-8">
+            </a>
+          </div>
+        </div>
+        <!-- List Container -->
+        <div class="flex justify-around space-x-32">
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Home</a>
+            <a href="#" class="hover:text-brightRed">Pricing</a>
+            <a href="#" class="hover:text-brightRed">Products</a>
+            <a href="#" class="hover:text-brightRed">About</a>
+          </div>
+
+        </div>
+        <div class="flex justify-around space-x-32">
+          <div class="flex flex-col space-y-3 text-white">
+            <a href="#" class="hover:text-brightRed">Careers</a>
+            <a href="#" class="hover:text-brightRed">Community</a>
+            <a href="#" class="hover:text-brightRed">Privacy Policy</a>
+
+          </div>
+
+        </div>
+        <!-- Input Container -->
+        <div class="flex flex-col justify-btween">
+          <form action="#">
+            <div class="flex space-x-3">
+              <input type="text" class="flex-1 px4 rounded-lg focus:outline-none" placeholder="Updated in your inbox">
+              <button class="px-6 py-2 text-white rounded-lg bg-brightRed hover:bg-brightRedLight focus:outline-none">
+                Go
+              </button>
+            </div>
+          </form>
+          <div class="hidden text-white md:block">
+            Copyright &copy; 2022, All Rights Reserved
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+
+  </body>
   <%- include('partials/footer') -%>
