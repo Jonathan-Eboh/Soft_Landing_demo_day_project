@@ -55,17 +55,16 @@ Back end: Node js, mongo db
 
 Optimizations:
 
-This was a pleasant and rare instance where the pipe line from idea to fully built out piece of software was able to flow with relatively few hitches. That said, half way through development the API I was leveraging started to return bad data for some of its entries. This lead to me utilizing a conditional clause within my EJS to preclude bad data from being rendered to the front end.
+There were many many optimizations to get this version out the door. 
+The most interesting and main optimization involves how I implemented the user being able to make a database with selected data types dynamically. In order to get the app up and running properly I decided to opt out of requiring a model for the individual entries in user created databases, which themselves, used a model. So only one model up front with this one.
 
 C.R.U.D
 
 for this one the paradigm takes the structure of
 
-Create:
- 
-1)Allows the user to create and specify the details of the database which holds the information for their API.
-2)Allows the user to add individual data points/entries into the data base previously created.
-
+Create: 
+1) Allows the user to create and specify the details of the database which holds the information for their API.
+2) Allows the user to add individual data points/entries into the data base previously created.
 
 Read: 
 1) The user can navigate to a view that displays a link to all existing APIs.
