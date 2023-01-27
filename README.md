@@ -61,10 +61,18 @@ C.R.U.D
 
 for this one the paradigm takes the structure of
 
-Create: Allows the user to create and specify the details of their movie night. This is then saved to the data base as a document.
+Create:
+ 
+1)Allows the user to create and specify the details of the database which holds the information for their API.
+2)Allows the user to add individual data points/entries into the data base previously created.
 
-Read: Once the user has created their event they are allowed to go to a page to see all of their created events
 
-Update: Once the user is browsing all the event they have created are then allowed th favorite an event via a familiar labeled and clickable heart icon this updates a boolean on the back end which keeps track of whether or not something has been favorited. This feature is also indefinitely toggleable
+Read: 
+1) The user can navigate to a view that displays a link to all existing APIs.
+2) Once viewing a single API the user can see a list of all entries in that specific API. 
 
-Delete: The user has the option to delete a given event on the same page they are able to view all their events
+Update: 
+The user can change the status of the APIs public access to public or private
+
+Delete: 
+The user has the option to delete a given entry in an API.
